@@ -1,0 +1,1 @@
+# Directiory for collected images and geodata
