@@ -117,7 +117,7 @@ def get_street_view_images(longitude_range, latitude_range):
 
     # collect street view images
     images = {}
-    images_count = 20
+    images_count = 7
     for i in range(images_count):
 
         # get url data
