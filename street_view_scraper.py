@@ -134,7 +134,8 @@ def get_street_view_images(longitude_range, latitude_range):
 
 if __name__ == '__main__':
 
-    region_name = 'france'
+    region_name = 'switzerland'
+    # TODO zliczanie poprzez zliczenie ile zwrocila funkcja, bo moga byc usuniete
     places_count = 1 # images = places * 7
     omitted_count = 0
 
