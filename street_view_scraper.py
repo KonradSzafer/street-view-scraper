@@ -134,10 +134,9 @@ def get_street_view_images(longitude_range, latitude_range):
 
 if __name__ == '__main__':
 
+    # settings
     region_name = 'switzerland'
-    # TODO zliczanie poprzez zliczenie ile zwrocila funkcja, bo moga byc usuniete
-    places_count = 1 # images = places * 7
-    omitted_count = 0
+    places_count = 1
 
     # subregion format: name, (min_longitude, max_longitude, min_latitude, max_latitude)
     subregions = []
@@ -157,6 +156,7 @@ if __name__ == '__main__':
 
     root = tk.Tk()
 
+    images_count = 0
     start_time = time.time()
     for i in range(places_count):
 
@@ -167,8 +167,8 @@ if __name__ == '__main__':
 
         # rand location and get images
         results = get_street_view_images(longitude_range, latitude_range)
+        images_count += len(results)
         if results == 0:
-            omitted_count += 7
             continue
 
         for url, image in results.items():
@@ -193,4 +193,4 @@ if __name__ == '__main__':
     end_time = time.time()
 
     print('Duration: %ds' % int(end_time - start_time))
-    print('Scraped images: %d' % int(places_count * 7 - omitted_count))
+    print('Scraped images: %d' % images_count)
