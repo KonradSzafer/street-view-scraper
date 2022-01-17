@@ -11,7 +11,7 @@ def show_image(image):
 
 def valid_image(image):
     # check size
-    height, width, layers = np.shape(img)
+    height, width, layers = np.shape(image)
     if (height != 800 or
         width != 800 or
         layers != 3):
@@ -20,10 +20,10 @@ def valid_image(image):
     avg_color_per_row = np.average(image, axis=0)
     avg_colors = np.average(avg_color_per_row, axis=0)
     print('Average colors sum: {:3.1f}'.format(avg_colors.sum()))
-    if avg_colors.sum() < 10:
+    if avg_colors.sum() < 50:
         return False
     # check if blury
-    laplacian_var = cv2.Laplacian(img, cv2.CV_64F).var()
+    laplacian_var = cv2.Laplacian(image, cv2.CV_64F).var()
     print('Laplacian variable: {:4.1f}'.format(laplacian_var))
     if laplacian_var < 350:
         return False

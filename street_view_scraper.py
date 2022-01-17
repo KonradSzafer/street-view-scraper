@@ -99,18 +99,30 @@ def get_street_view_images(longitude_range, latitude_range):
         pyautogui.hotkey('ctrl', 'F4')
         return 0
 
-    # get screen shots of street
-    # ? check if screenshot of screen is dark or blurry
-    # time.sleep(3) # depends on the internet
+    # time.sleep(3) # depends on the internet speed
+    # check if street view has loaded
+    loaded = False
+    for i in range(10):
+        img = get_street_view_image()
+        loaded = valid_image(img)
+        if loaded:
+            break
+        else:
+            time.sleep(5)
+
+    if not loaded:
+        raise RuntimeError('Internet connection is too weak')
+
+    # collect street view images
     images = {}
     images_count = 7
     for i in range(images_count):
 
         # get url data
-        time.sleep(0.5)
+        time.sleep(1)
         url_location = get_graphics_location('graphics/url_image.png')
 
-        pyautogui.click(x=url_location.x, #+50
+        pyautogui.click(x=url_location.x,
                         y=url_location.y,
                         clicks=3)
 
@@ -120,6 +132,7 @@ def get_street_view_images(longitude_range, latitude_range):
 
         # take screen shot
         img = get_street_view_image()
+        # TODO validate image
         images[url_data] = img
 
         # move camera
