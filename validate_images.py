@@ -23,7 +23,7 @@ def valid_image(image, print_values=False):
         print('Average colors sum: {:3.1f}'.format(avg_colors.sum()))
     if avg_colors.sum() < 50:
         return False
-    # check if blury
+    # check if blurry
     laplacian_var = cv2.Laplacian(image, cv2.CV_64F).var()
     if print_values:
         print('Laplacian variable: {:4.1f}'.format(laplacian_var))

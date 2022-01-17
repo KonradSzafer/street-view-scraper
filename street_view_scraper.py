@@ -17,6 +17,7 @@ import tkinter as tk
 
 from validate_images import valid_image
 
+
 def drag_mouse(start_x, start_y, end_x, end_y, seconds=1):
 
     pyautogui.mouseDown(button='left',
@@ -111,11 +112,12 @@ def get_street_view_images(longitude_range, latitude_range):
             time.sleep(5)
 
     if not loaded:
+        pyautogui.hotkey('ctrl', 'F4')
         raise RuntimeError('Internet connection is too weak')
 
     # collect street view images
     images = {}
-    images_count = 7
+    images_count = 20
     for i in range(images_count):
 
         # get url data
