@@ -4,6 +4,7 @@ import time
 import json
 import csv
 
+import random
 import numpy as np
 import matplotlib.pyplot as plt
 from PIL import Image
@@ -134,15 +135,13 @@ def get_street_view_images(longitude_range, latitude_range):
 if __name__ == '__main__':
 
     region_name = 'france'
-    places_count = 5 # images = places * 7
+    places_count = 1 # images = places * 7
     omitted_count = 0
 
-    # coords format: min_longitude, max_longitude, min_latitude, max_latitude
-    subregions_coords = []
+    # subregion format: name, (min_longitude, max_longitude, min_latitude, max_latitude)
+    subregions = []
     with open('coords.json') as coords_file:
-        coords = json.load(coords_file)
-        subregions_coords = coords[region_name]
-    subregions_count = len(subregions_coords)
+        subregions = json.load(coords_file)[region_name]
 
     working_dir = os.getcwd()
     images_foldername = working_dir + '/data/' + region_name + '/'
@@ -161,8 +160,7 @@ if __name__ == '__main__':
     for i in range(places_count):
 
         # get longitude and latitude ranges
-        subregion_idx = np.random.randint(0, subregions_count)
-        coords = subregions_coords[subregion_idx]
+        subregion_name, coords = random.choice(list(subregions.items()))
         longitude_range = (coords[0], coords[1])
         latitude_range = (coords[2], coords[3])
 
@@ -183,7 +181,7 @@ if __name__ == '__main__':
             image_name = image_name.replace('.', '_')
 
             # link image name with url
-            row = [image_name, url]
+            row = [image_name, subregion_name, url]
             writer.writerow(row)
 
             # save images
