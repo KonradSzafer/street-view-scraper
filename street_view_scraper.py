@@ -15,6 +15,7 @@ import pyperclip
 import pyscreenshot as ImageGrab
 import tkinter as tk
 
+from validate_images import valid_image
 
 def drag_mouse(start_x, start_y, end_x, end_y, seconds=1):
 

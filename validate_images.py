@@ -11,8 +11,10 @@ def show_image(image):
 
 def valid_image(image):
     # check size
-    height, width, _ = np.shape(img)
-    if height != 800 and width != 800:
+    height, width, layers = np.shape(img)
+    if (height != 800 or
+        width != 800 or
+        layers != 3):
         return False
     # check if dark
     avg_color_per_row = np.average(image, axis=0)
