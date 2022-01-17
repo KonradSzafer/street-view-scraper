@@ -191,5 +191,5 @@ if __name__ == '__main__':
     f.close()
     end_time = time.time()
 
-    print('Duration: ', end_time - start_time, 's')
-    print('Scraped images: ', places_count * 7 - omitted_count)
+    print('Duration: %ds' % int(end_time - start_time))
+    print('Scraped images: %d' % int(places_count * 7 - omitted_count))
