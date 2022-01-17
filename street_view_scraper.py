@@ -132,8 +132,11 @@ def get_street_view_images(longitude_range, latitude_range):
 
         # take screen shot
         img = get_street_view_image()
-        # TODO validate image
-        images[url_data] = img
+        valid = valid_image(img)
+        if valid:
+            images[url_data] = img
+        else:
+            time.sleep(2)
 
         # move camera
         if i < images_count-1:

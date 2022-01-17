@@ -9,7 +9,7 @@ def show_image(image):
     plt.show()
 
 
-def valid_image(image):
+def valid_image(image, print_values=False):
     # check size
     height, width, layers = np.shape(image)
     if (height != 800 or
@@ -19,13 +19,15 @@ def valid_image(image):
     # check if dark
     avg_color_per_row = np.average(image, axis=0)
     avg_colors = np.average(avg_color_per_row, axis=0)
-    print('Average colors sum: {:3.1f}'.format(avg_colors.sum()))
+    if print_values:
+        print('Average colors sum: {:3.1f}'.format(avg_colors.sum()))
     if avg_colors.sum() < 50:
         return False
     # check if blury
     laplacian_var = cv2.Laplacian(image, cv2.CV_64F).var()
-    print('Laplacian variable: {:4.1f}'.format(laplacian_var))
-    if laplacian_var < 350:
+    if print_values:
+        print('Laplacian variable: {:4.1f}'.format(laplacian_var))
+    if laplacian_var < 230:
         return False
     return True
 
@@ -33,7 +35,7 @@ def valid_image(image):
 if __name__ == '__main__':
 
     img = cv2.imread('example_images/blurr.png')
-    result = valid_image(img)
+    result = valid_image(img, True)
     if result:
         print('Image is correct')
     else:
@@ -42,7 +44,7 @@ if __name__ == '__main__':
     show_image(img)
 
     img = cv2.imread('example_images/light_blurr.png')
-    result = valid_image(img)
+    result = valid_image(img, True)
     if result:
         print('Image is correct')
     else:
@@ -51,7 +53,7 @@ if __name__ == '__main__':
     show_image(img)
 
     img = cv2.imread('example_images/good.png')
-    result = valid_image(img)
+    result = valid_image(img, True)
     if result:
         print('Image is correct')
     else:
