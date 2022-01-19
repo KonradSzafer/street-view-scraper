@@ -27,7 +27,7 @@ def valid_image(image, print_values=False):
     laplacian_var = cv2.Laplacian(image, cv2.CV_64F).var()
     if print_values:
         print('Laplacian variable: {:4.1f}'.format(laplacian_var))
-    if laplacian_var < 230:
+    if laplacian_var < 100:
         return False
     return True
 

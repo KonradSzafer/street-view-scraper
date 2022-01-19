@@ -81,8 +81,8 @@ def get_street_view_images(longitude_range, latitude_range):
     screen_middle_y = root.winfo_screenheight() / 2
     for i in range(10):
         # drop wherever in middle of the screen
-        drop_x = int(screen_middle_x + np.random.randint(-200, 200))
-        drop_y = int(screen_middle_y + np.random.randint(-200, 200))
+        drop_x = int(screen_middle_x + np.random.randint(-150, 150))
+        drop_y = int(screen_middle_y + np.random.randint(-150, 150))
 
         drag_mouse( start_x=icon_location.x, start_y=icon_location.y,
                     end_x=drop_x,
@@ -112,8 +112,9 @@ def get_street_view_images(longitude_range, latitude_range):
             time.sleep(5)
 
     if not loaded:
+        # raise RuntimeError('Internet connection is too weak')
         pyautogui.hotkey('ctrl', 'F4')
-        raise RuntimeError('Internet connection is too weak')
+        return 0
 
     # collect street view images
     images = {}
@@ -154,8 +155,9 @@ def get_street_view_images(longitude_range, latitude_range):
 if __name__ == '__main__':
 
     # settings
-    region_name = 'switzerland'
-    places_count = 1
+    region_name = 'italy'
+    places_count = 3
+    setted_images_count = 1000
 
     # subregion format: name, (min_longitude, max_longitude, min_latitude, max_latitude)
     subregions = []
@@ -186,9 +188,9 @@ if __name__ == '__main__':
 
         # rand location and get images
         results = get_street_view_images(longitude_range, latitude_range)
-        images_count += len(results)
         if results == 0:
             continue
+        images_count += len(results)
 
         for url, image in results.items():
             # plt.imshow(image)
@@ -207,6 +209,9 @@ if __name__ == '__main__':
             # save images
             image = Image.fromarray(image)
             image.save(images_foldername + image_name + '.png')
+
+        if images_count >= setted_images_count:
+            break
 
     f.close()
     end_time = time.time()
