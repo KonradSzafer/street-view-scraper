@@ -155,8 +155,8 @@ def get_street_view_images(longitude_range, latitude_range):
 if __name__ == '__main__':
 
     # settings
-    region_name = 'france'
-    places_count = 1
+    region_name = 'greece'
+    places_count = 10
     print('Region: %s' % region_name)
     setted_images_count = 1000
 
