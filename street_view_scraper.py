@@ -1,4 +1,5 @@
 import os
+import sys
 from pathlib import Path
 import time
 import json
@@ -154,11 +155,20 @@ def get_street_view_images(longitude_range, latitude_range):
 
 if __name__ == '__main__':
 
-    # settings
-    region_name = 'greece'
-    places_count = 10
+    # default settings
+    region_name = 'france'
+    places_count = 20
+    max_images_count = 1000
+
+    if len(sys.argv) > 1:
+        region_name = sys.argv[1]
+    if len(sys.argv) > 2:
+        places_count = int(sys.argv[2])
+    if len(sys.argv) > 3:
+        max_images_count = int(sys.argv[3])
+
     print('Region: %s' % region_name)
-    setted_images_count = 1000
+    print('Places count: %d' % places_count)
 
     # subregion format: name, (min_longitude, max_longitude, min_latitude, max_latitude)
     subregions = []
@@ -211,7 +221,7 @@ if __name__ == '__main__':
             image = Image.fromarray(image)
             image.save(images_foldername + image_name + '.png')
 
-        if images_count >= setted_images_count:
+        if images_count >= max_images_count:
             break
 
     f.close()
