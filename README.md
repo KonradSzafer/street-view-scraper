@@ -3,7 +3,7 @@
 This script was created to easily scrape Google Street View images without using Google API.\
 This can be done with Google Maps as the URL can be fully generated from the coordinates, unlike Google Earth as it requires additional code in the URL.\
 It uses Google Maps to find the location and Google Street View to take screenshots.
-Demonstration video:
+Demonstration video: https://youtu.be/LWvcBPBZtws
 
 ## How it works
 
@@ -23,7 +23,9 @@ The same function is used as one of the two elements to check if the site is ful
 Images are saved after every sequence for place, with name based on coords.\
 Images are saved after each screenshot sequence to a csv file. The file line links the image name to the subregion name and the exact URL.
 
-At each drawn location, 6 screenshots are taken by changing directions.
+At each drawn location, 6 screenshots are taken by changing directions.\
+Each image has a resolution of 800x800px, and this value can be changed.\
+Images are collected at 900 samples per hour, this value may be lower depending on the internet speed and urbanization of the region.
 
 ## How to run it
 
