@@ -32,7 +32,11 @@ Images are collected at 900 samples per hour, this value may be lower depending 
 Install the required packages or the full conda enviroment.
 Specify regions and subregions in the coords.json file.
 Scraper uses icons and other browser graphics to work properly, for default browser dark mode is needed or images in grapfics folder need to be changed.
-After the region and number of places are specified, everything is ready.
+After specifying the region and number of locations in the script or passing them as arguments on the command line, everything is ready.
+
+```console
+ubuntu@example:/street-view-scraper$ python3 street_view_scraper.py france 30
+```
 
 ## Other tools
 
