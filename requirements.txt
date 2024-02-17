@@ -32,7 +32,7 @@ olefile=0.46=pyhd3eb1b0_0
 opencv-python=4.5.5.62=pypi_0
 openssl=1.1.1m=h2bbff1b_0
 packaging=21.3=pyhd3eb1b0_0
-pillow=8.4.0=py39hd45dc43_0
+pillow>=10.2.0
 pip=21.2.4=py39haa95532_0
 pyautogui=0.9.53=py39hcbf5309_0
 pymsgbox=1.0.9=pyh9f0ad1d_0
